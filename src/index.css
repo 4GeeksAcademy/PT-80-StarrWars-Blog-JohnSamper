@@ -1,0 +1,45 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url(https://wallpapersok.com/images/hd/4k-minimalist-star-wars-attack-run-1m4ct271amo2ughr.jpg);
+    background-size: 150rem;
+    background-position: center;
+    background-repeat: repeat-y;
+}
+
+.Navbar{
+    background-color: #d30000;
+    background-image: url(https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/video/IevwMJs/star-wars-hyperspace-travel-24fps_sixx_ceqe_thumbnail-1080_01.png);
+   
+    background-size: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   margin: 0;
+    padding: 0;
+    gap: 0;
+   
+    margin-bottom: 0 !important;
+}
+
+.Home-bg{
+     margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    background-color: #000000;
+    background-image: url(https://wallpapersok.com/images/hd/4k-minimalist-star-wars-attack-run-1m4ct271amo2ughr.jpg);
+    background-size: 150rem;
+    background-position: center;
+    background-repeat: repeat-y;
+   
+}
+
+main, h1, h2, h3, h4, h5, h6, .main-content {
+    margin-top: 0 !important;
+}
+.navbar {
+    margin-bottom: 0 !important;
+}.card-bg {
+    background-size: 20rem;
+    background-position: center;
+    background-image: url(https://e0.pxfuel.com/wallpapers/234/67/desktop-wallpaper-best-of-for-andriod-star-wars-pattern-thumbnail.jpg);
+}
