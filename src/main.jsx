@@ -6,6 +6,7 @@ import { router } from "./routes";  // Import the router configuration
 import { StoreProvider } from './hooks/useGlobalReducer';  // Import the StoreProvider for global state management
 import { FavoritesProvider } from './Context/Favoritecontext';
 
+
 const Main = () => {
     return (
         <FavoritesProvider>

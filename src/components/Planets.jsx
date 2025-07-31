@@ -52,6 +52,7 @@ export const Planets = () => {
         {planets.map((planet) => (
           <Card
             key={planet.uid}
+            uid={planet.uid}
             name={planet.name}
             population={planet.population}
             terrain={planet.terrain}

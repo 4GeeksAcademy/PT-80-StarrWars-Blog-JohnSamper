@@ -16,31 +16,33 @@ export const Films = () => {
           return;
         }
 
-        const detailed = await Promise.all(
-          filmsArray.map(async (film) => {
-            try {
-              const res = await fetch(film.url);
-              const detail = await res.json();
-              const props = detail.result?.properties;
+       const detailed = await Promise.all(
+  filmsArray.map(async (film) => {
+    try {
+      const res = await fetch(`https://www.swapi.tech/api/films/${film.uid}`);
+      const detail = await res.json();
 
-              return {
-                title: props?.title || "Unknown",
-                director: props?.director || "Unknown",
-                release_date: props?.release_date || "Unknown",
-                episode_id: props?.episode_id || "N/A",
-                uid: film.uid,
-              };
-            } catch (err) {
-              return {
-                title: "Error loading film",
-                director: "N/A",
-                release_date: "N/A",
-                episode_id: "N/A",
-                uid: film.uid || Math.random(),
-              };
-            }
-          })
-        );
+      const props = detail.result?.properties;
+
+      return {
+        title: props?.title || "Unknown",
+        director: props?.director || "Unknown",
+        release_date: props?.release_date || "Unknown",
+        episode_id: props?.episode_id || "N/A",
+        uid: film.uid,
+      };
+    } catch (err) {
+      console.error(`❌ Failed to fetch film ${film.uid}`, err);
+      return {
+        title: "Error loading film",
+        director: "N/A",
+        release_date: "N/A",
+        episode_id: "N/A",
+        uid: film.uid || Math.random(),
+      };
+    }
+  })
+);
 
         setFilms(detailed);
       } catch (error) {
@@ -68,6 +70,7 @@ export const Films = () => {
               director={film.director}
               release_date={film.release_date}
               episode_id={film.episode_id}
+               uid={film.uid}
             />
           ))}
         </div>

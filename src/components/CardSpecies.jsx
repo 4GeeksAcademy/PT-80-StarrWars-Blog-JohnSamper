@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faJedi } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 
-export const CardSpecies = ({ name, classification, average_lifespan, homeworld }) => {
+export const CardSpecies = ({ name, classification, average_lifespan, homeworld , uid }) => {
   const { addFavorite } = useFavorites();
 
   const handleAddToFavorites = () => {
@@ -25,7 +25,8 @@ export const CardSpecies = ({ name, classification, average_lifespan, homeworld 
           <p>Lifespan: {average_lifespan}</p>
           <p>Home World: {homeworld}</p>
 
-          <Link to="/species" className="btn btn-danger">Learn more</Link>
+          <Link to={`/species/${uid}`} className="btn btn-danger">Learn more</Link>
+
           <button className="btn btn-warning ms-4" onClick={handleAddToFavorites}>
             <FontAwesomeIcon icon={faJedi} size="lg" />
           </button>

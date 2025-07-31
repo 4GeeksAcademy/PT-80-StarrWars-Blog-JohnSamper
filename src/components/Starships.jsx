@@ -15,14 +15,17 @@ export const Starships = () => {
           limitedStarships.map((starship) =>
             fetch(starship.url)
               .then((res) => res.json())
-              .then((detail) => ({
-                name: detail.result.properties.name,
-                uid: starship.uid,
-                model: detail.result.properties.model,
-                manufacturer: detail.result.properties.manufacturer,
-                starship_class: detail.result.properties.starship_class,
-                cost_in_credits: detail.result.properties.cost_in_credits,
-              }))
+              .then((detail) => {
+  const props = detail?.result?.properties;
+                  return {
+                    name: props?.name || "unknown",
+                    uid: starship.uid,
+                    model: props?.model || "unknown",
+                    manufacturer: props?.manufacturer || "unknown",
+                    starship_class: props?.starship_class || "unknown",
+                    cost_in_credits: props?.cost_in_credits || "unknown",
+                  };
+                })
               .catch(() => ({
                 name: starship.name,
                 uid: starship.uid,
@@ -54,6 +57,7 @@ export const Starships = () => {
           {Starships.map((starship) => (
             <CardStarship
               key={starship.uid}
+              uid={starship.uid}
               name={starship.name}
               model={starship.model}
               manufacturer={starship.manufacturer}

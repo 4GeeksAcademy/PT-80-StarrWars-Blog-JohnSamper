@@ -1,14 +1,13 @@
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faJedi } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useFavorites } from "../Context/Favoritecontext";
 
-export const CardCharacters = ({ name, height, gender, birth_year }) => {
+export const CardCharacters = ({ name, height, gender, birth_year, uid }) => {
   const { addFavorite } = useFavorites();
 
   const handleAddToFavorites = () => {
-    const item = { name, height, gender, birth_year };
+    const item = { name, height, gender, birth_year, uid };
     addFavorite(item);
   };
 
@@ -26,9 +25,11 @@ export const CardCharacters = ({ name, height, gender, birth_year }) => {
           <p>Gender: {gender}</p>
           <p>Birth Year: {birth_year}</p>
 
-          <Link to="/Characters" className="btn btn-danger">Learn more</Link>
+          
+          <Link to={`/character/${uid}`} className="btn btn-danger">Learn more</Link>
+
           <button className="btn btn-warning ms-4" onClick={handleAddToFavorites}>
-            <FontAwesomeIcon icon={faJedi} size="lg" />
+          <FontAwesomeIcon icon={faJedi} size="lg" />
           </button>
         </div>
       </div>

@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faJedi } from '@fortawesome/free-solid-svg-icons';
 import { useFavorites } from "../Context/Favoritecontext";
 
-export const Card = ({ name, population, terrain }) => {
+export const Card = ({ name, population, terrain , uid }) => {
   const { addFavorite } = useFavorites();
 
   const handleAddToFavorites = () => {
-    const item = { name, population, terrain };
+    const item = { name, population, terrain , uid };
     addFavorite(item);
   };
 
@@ -24,7 +24,7 @@ export const Card = ({ name, population, terrain }) => {
           <p className="card-text" style={{ maxWidth: "100%" }}>Population: {population}</p>
           <p className="card-text" style={{ maxWidth: "100%" }}>Terrain: {terrain}</p>
 
-          <Link to="/Planets" className="btn btn-danger">Learn more</Link>
+           <Link to={`/planet/${uid}`} className="btn btn-danger">Learn more</Link>
           <button className="btn btn-warning ms-4" onClick={handleAddToFavorites}>
             <FontAwesomeIcon icon={faJedi} size="lg" />
           </button>

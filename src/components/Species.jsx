@@ -7,48 +7,58 @@ export const Species = () => {
   const { store, dispatch } = useGlobalReducer();
 
   useEffect(() => {
-    fetch("https://www.swapi.tech/api/species")
-      .then((res) => res.json())
-      .then((data) => {
-        const limitedSpecies = data.results.slice(0, 10);
-        return Promise.all(
-          limitedSpecies.map(async (item) => {
-            try {
-              const detailRes = await fetch(item.url);
-              const detail = await detailRes.json();
-              let homeworldName = "unknown";
-              const homeworldUrl = detail.result.properties.homeworld;
-              if (homeworldUrl) {
-                try {
-                  const hwRes = await fetch(homeworldUrl);
-                  const hwDetail = await hwRes.json();
-                  homeworldName = hwDetail.result?.properties?.name || "unknown";
-                } catch {
-                  homeworldName = "unknown";
-                }
+  const fetchSpecies = async () => {
+    try {
+      const res = await fetch("https://www.swapi.tech/api/species");
+      const data = await res.json();
+
+      const limitedSpecies = data.results.slice(0, 10);
+
+      const detailed = await Promise.all(
+        limitedSpecies.map(async (item) => {
+          try {
+            const detailRes = await fetch(item.url);
+            const detail = await detailRes.json();
+
+            let homeworldName = "unknown";
+            const homeworldUrl = detail.result.properties.homeworld;
+            if (homeworldUrl) {
+              try {
+                const hwRes = await fetch(homeworldUrl);
+                const hwDetail = await hwRes.json();
+                homeworldName = hwDetail.result?.properties?.name || "unknown";
+              } catch {
+                homeworldName = "unknown";
               }
-              return {
-                name: detail.result.properties.name,
-                classification: detail.result.properties.classification,
-                average_lifespan: detail.result.properties.average_lifespan,
-                homeworld: homeworldName,
-                uid: item.uid,
-              };
-            } catch {
-              return {
-                name: item.name,
-                classification: "unknown",
-                average_lifespan: "unknown",
-                homeworld: "unknown",
-                uid: item.uid,
-              };
             }
-          })
-        );
-      })
-      .then(setSpecies)
-      .catch((err) => console.error(err));
-  }, []);
+
+            return {
+              name: detail.result.properties.name,
+              classification: detail.result.properties.classification,
+              average_lifespan: detail.result.properties.average_lifespan,
+              homeworld: homeworldName,
+              uid: item.uid,
+            };
+          } catch {
+            return {
+              name: item.name,
+              classification: "unknown",
+              average_lifespan: "unknown",
+              homeworld: "unknown",
+              uid: item.uid,
+            };
+          }
+        })
+      );
+
+      setSpecies(detailed);
+    } catch (err) {
+      console.error("Species fetch error:", err);
+    }
+  };
+
+  fetchSpecies();
+}, []);
 
   return (
     <div className="p-5 bg-opacity-75 bg-transparent ps-4 ">
@@ -67,6 +77,7 @@ export const Species = () => {
           {species.map((specie) => (
             <CardSpecies
               key={specie.uid}
+              uid={specie.uid}
               name={specie.name}
               classification={specie.classification}
               average_lifespan={specie.average_lifespan}

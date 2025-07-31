@@ -4,7 +4,7 @@ import { faJedi } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useFavorites } from "../Context/Favoritecontext";
 
-export const CardStarship = ({ name, model, manufacturer, cost_in_credits }) => {
+export const CardStarship = ({ uid, name, model, manufacturer, cost_in_credits }) => {
   const { addFavorite } = useFavorites();
 
   const handleAddToFavorites = () => {
@@ -26,7 +26,7 @@ export const CardStarship = ({ name, model, manufacturer, cost_in_credits }) => 
           <p>Manufacturer: {manufacturer}</p>
           <p>Cost in Credits: {cost_in_credits}</p>
 
-          <Link to="/Starship" className="btn btn-danger">Learn more</Link>
+          <Link to={`/starship/${uid}`} className="btn btn-danger">Learn more</Link>
           <button className="btn btn-warning ms-4" onClick={handleAddToFavorites}>
             <FontAwesomeIcon icon={faJedi} size="lg" />
           </button>

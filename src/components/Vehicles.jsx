@@ -54,6 +54,7 @@ export const Vehicles = () => {
           {vehicles.map((vehicle) => (
             <CardVehicles
               key={vehicle.uid}
+              uid={vehicle.uid}
               name={vehicle.name}
               model={vehicle.model}
               manufacturer={vehicle.manufacturer}

@@ -54,6 +54,7 @@ export const Characters = () => {
           {Characters.map((characters) => (
             <CardCharacters
               key={characters.uid}
+              uid={characters.uid} 
               name={characters.name}
               height={characters.height}
               gender={characters.gender}

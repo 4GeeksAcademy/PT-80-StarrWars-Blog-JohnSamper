@@ -21,6 +21,13 @@ import { CardStarship } from "./components/CardStarship"; // Import the CardStar
 import {Starships} from "./components/Starships"; // Import the Starships component
 import { CardVehicles } from "./components/CardVehicles"; // Import the CardVehicles component
 import {  Vehicles } from "./components/Vehicles"; // Import the Vehicles component
+import { CharacterDetails } from "./pages/CharacterDetails";
+import { PlanetDetails } from "./pages/PlanetDetails";
+import { FilmDetails } from "./pages/FilmDetails";
+import { SpeciesDetails } from "./pages/SpeciesDetails";
+import { StarshipDetails } from "./pages/StarshipDetails";
+import { VehicleDetails } from "./pages/VehicleDetails";
+
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -38,18 +45,24 @@ export const router = createBrowserRouter(
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
         <Route path="/planets" element={<Planets />} />
-        <Route path="/card" element={<Card />} /> 
-        <Route path="/cardcharacters" element={<CardCharacters />} />
+        {/* <Route path="/card" element={<Card />} />  */}
+        {/* <Route path="/cardcharacters" element={<CardCharacters />} /> */}
         <Route path="/characters" element={<Characters />} />
         <Route path="/films" element={<Films />} />
-        <Route path="/cardfilms" element={<CardFilms />} />
+        {/* <Route path="/cardfilms" element={<CardFilms />} /> */}
         <Route path="/species" element={<Species />} />
-        <Route path="/cardspecies" element={<CardSpecies />} />
-        <Route path="/cardstarship" element={<CardStarship />} />
+        {/* <Route path="/cardspecies" element={<CardSpecies />} /> */}
+        {/* <Route path="/cardstarship" element={<CardStarship />} /> */}
         <Route path="/starships" element={<Starships />} /> 
-        <Route path="/cardvehicles" element={<CardVehicles />} />
+        {/* <Route path="/cardvehicles" element={<CardVehicles />} /> */}
         <Route path="/vehicles" element={<Vehicles />} />
-
+        <Route path="/character/:id" element={<CharacterDetails />} />
+        <Route path="/planet/:id" element={<PlanetDetails />} />
+        <Route path="/film/:id" element={<FilmDetails />} />
+        <Route path="/species/:id" element={<SpeciesDetails />} />
+        <Route path="/starship/:id" element={<StarshipDetails />} />
+        <Route path="/vehicle/:id" element={<VehicleDetails />} />
+        
       </Route>
     )
 );
